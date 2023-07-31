@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Module_4_Lesson_1_hw_1_Compose</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="password_confirm">Confirm password</string>
+    <string name="age">Age</string>
+    <string name="country">Country</string>
+    <string name="register">Register</string>
+</resources>
