@@ -61,50 +61,6 @@ fun MyApp() {
     val age = remember { mutableStateOf("") }
     val country = remember { mutableStateOf("") }
 
-    val listLogin = listOf("ivan3000", "kozak3241", "kingofeverything", "workhardplayhard")
-    val ageInt = age.value.toIntOrNull() ?: 0
-    val countryCheck = "ukraine"
-    val emailCheck = "@"
-
-    fun checkInput() {
-
-        // login check
-        for (i in listLogin.indices) {
-            if (username.value == listLogin[i]) {
-                textInfo.value = "This login is already taken. Please, choose another one."
-                break
-            } else if (i == listLogin.size - 1) {
-
-                // email check
-                if (email.value.contains(emailCheck)) {
-
-                    // password check
-                    if (password.value == passwordConfirm.value) {
-
-                        // age check
-                        if (ageInt >= 18) {
-
-                            // country check
-                            val countryLowerCase = country.value.lowercase()
-                            if (countryLowerCase == countryCheck) {
-                                textInfo.value = "You have been successfully registered!"
-                                break
-                            } else {
-                                textInfo.value = "Excuse me. We don't support users outside the Ukraine yet."
-                            }
-                        } else {
-                            textInfo.value = "Your age is less than 18 years. Please, try again later."
-                        }
-                    } else {
-                        textInfo.value = "Check password. You put in different passwords."
-                    }
-                } else {
-                    textInfo.value = "Please, check your email. Something wrong."
-                }
-            }
-        }
-    }
-
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -201,7 +157,16 @@ fun MyApp() {
         Button(
             modifier = Modifier
                 .padding(8.dp),
-            onClick = { checkInput() }
+            onClick = {
+                textInfo.value = DataValidator().checkInput(
+                    username = username.value,
+                    email = email.value,
+                    password = password.value,
+                    passwordConfirm = passwordConfirm.value,
+                    age = age.value,
+                    country = country.value
+                )
+            }
         ) { Text(text = stringResource(id = R.string.register)) }
     }
 }
