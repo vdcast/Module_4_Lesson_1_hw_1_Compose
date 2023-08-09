@@ -1,7 +1,7 @@
 # Module_4_Lesson_1_hw_1_Compose
 **Lesson's topic:**
 
-Unit tests
+Unit tests.
 
 **Task:**
 
